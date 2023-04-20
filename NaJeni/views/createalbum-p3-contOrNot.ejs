@@ -1,16 +1,44 @@
-<body>
-    <button id="continue-btn">Continue</button>
-    <button id="finish-btn">Finish</button>        
-</body>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <style>
+      .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 100px;
+        margin-top: 350px;
+      }
 
-<script>
+      .secoundDiv{
+        width: 200px;
+        border-width: 8px;
+        border-style: solid;
+        border-image: linear-gradient(to right,darkorchid,rgb(13, 229, 204)) 1;
+        display: inline-block;
+        background-color: white;
+        font-size: 24px;
+        padding: 10px 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="button-container">
+      <button id="continue-btn" class="secoundDiv">Continue</button>
+      <button id="finish-btn" class="secoundDiv">Finish</button>            
+    </div>
+  </body>
+  <script>
     const continueBtn = document.getElementById('continue-btn');
     const finishBtn = document.getElementById('finish-btn');
-    
+
     continueBtn.addEventListener('click', () => {
-        window.location.href = '/createalbum-p3';
+      window.location.href = '/createalbum-p3';
     });
-    
+
     finishBtn.addEventListener('click', () => {
-        window.location.href = '/main';
-    });</script>
+      window.location.href = '/main';
+    });
+  </script>
+</html>

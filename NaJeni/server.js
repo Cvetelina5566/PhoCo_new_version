@@ -67,8 +67,47 @@ app.post('/signup', (req, res) => {
         fs.writeFileSync('users.json', JSON.stringify(users))
         logedInUserName = name
         logedInUserEmail = email
-        res.render('main', { name: logedInUserName, accessibleAlbums });
-    }
+        const accessibleAlbums = {};
+        const promises = [];
+        for (const [albumName, albumDetails] of Object.entries(allalbums)) {
+            const realname = albumDetails.realName
+            const albumAccess = albumDetails.access;
+            if (albumAccess.includes(logedInUserEmail)) {
+                const imageUrl = albumDetails.imageUrl;
+                if (imageUrl) {
+                    accessibleAlbums[albumName] = { ...albumDetails, imageUrl };
+                } else {
+                    const imageRef = storage.bucket('phoco-c6bcd.appspot.com').file(`${albumName}-0.jpg`);
+                    const promise = new Promise((resolve, reject) => {
+                        imageRef.getSignedUrl({ action: 'read', expires: '03-17-2025' }, (err, url) => {
+                            if (err) {
+                                console.error(err);
+                                reject(err);
+                            } else {
+                                const updatedAlbumDetails = { ...albumDetails, imageUrl: url };
+                                accessibleAlbums[albumName] = updatedAlbumDetails;
+                                allalbums[albumName] = updatedAlbumDetails;
+                                fs.writeFileSync('albums.json', JSON.stringify(allalbums));
+                                resolve();
+                            }
+                        });
+                    });
+    
+                    promises.push(promise);
+                }
+            }
+        }
+    
+        Promise.all(promises)
+            .then(() => {
+                // Render the main page with the accessible albums and their cover images
+                res.render('main', { name: logedInUserName, accessibleAlbums });
+            })
+            .catch((err) => {
+                console.error(err);
+                res.status(500).send('Server error');
+            });
+        }
 })
 app.get('/login', (req, res) => {
     if (!logedInUserEmail) {

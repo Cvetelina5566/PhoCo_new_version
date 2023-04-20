@@ -3,28 +3,62 @@
   <head>
     <title>Create album</title>
     <style>
-      .upload-button {
-        background-color: green;
+      input[type="file"], input[type="text"], button {
+      display: block;
+      margin: 0 auto;
+    }
+      #upload-button {
+          background-color: rgb(82, 232, 82);
+          padding: 3px;
+          margin: 4px;
       }
 
-      .upload-button.uploaded {
-        background-color: gray;
+      #upload-button.uploaded {
+          background-color: rgb(186, 186, 186);
       }
-    </style>
+
+      .firstDiv{
+              margin-top: 150px;
+              border-bottom-width: 6px;
+              width: 500px;
+              /* inline-size: 326px ; */
+              border-bottom-style: solid;
+              border-image: linear-gradient(to right,darkorchid,rgb(13, 229, 204)) 1;
+              padding-bottom:10px ;
+              margin-left: auto;
+              margin-right: auto;
+          }
+
+          .secoundDiv{
+              border-width: 6px;
+              border-style: solid;
+              border-image: linear-gradient(to right,darkorchid,rgb(13, 229, 204)) 1;
+              display: inline-block;
+              background-color: white;
+              padding: 4px;
+          }
+  </style>
   </head>
   <body>
     <p>2/3</p>
-    <h1>Създаване на албум</h1>
-    <p>Моля, добавете 3 снимки за втората страница от аблума, подпис и текст, който да описва албума/да е важен за Вас</p>
-    <input type="file" id="image-input-1" name="image-input-1" />
-    <input type="file" id="image-input-2" name="image-input-2" />
-    <input type="file" id="image-input-3" name="image-input-3" />
-    
-    <input type="text" id="subtitle-input" placeholder="Subtitle" />
-    <input type="text" id="description-input" placeholder="Description" />
+    <h1 class="firstDiv" style="text-align: center;">Създаване на албум</h1>
+    <br>
+    <p style="text-align: center; margin-top: -20px; font-size: 20px;">Моля, добавете 3 снимки за втората страница от аблума, подпис и текст, който да описва албума/да е важен за Вас</p>
+    <br>
+   
+    <input type="file" id="image-input-1" name="image-input-1" style="margin-top:2px;" />
+    <br>
+    <input type="file" id="image-input-2" name="image-input-2" style="margin-top:2px;" />
+    <br>
+    <input type="file" id="image-input-3" name="image-input-3" style="margin-top:2px;" />
+    <br><br>
+    <div style="text-align: center;">
+    <input style="margin-top:0px; width: 200px;"  type="text" id="subtitle-input" placeholder="Subtitle" />
+    <input style="margin-top:10px; width: 200px; margin-bottom: 20px;"  type="text" id="description-input" placeholder="Description" />
 
-    <button id="submit-button">Submit Form</button>
+    <button style="width: 210px; " id="submit-button" class="secoundDiv">Submit Form</button>
 
+  </div>
     <script>
       const formData = new FormData();
 

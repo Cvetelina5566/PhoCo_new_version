@@ -2,18 +2,63 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+        <style>
+
+            .firstDiv{
+                border-bottom-width: 6px;
+                inline-size: 126px ;
+                border-bottom-style: solid;
+                border-image: linear-gradient(to right,darkorchid,rgb(13, 229, 204)) 1;
+                /*margin: 15px 32px;*/
+                margin: 12px
+
+            }
+
+            .secoundDiv{
+                border-width: 6px;
+                border-style: solid;
+                border-image: linear-gradient(to right,darkorchid,rgb(13, 229, 204)) 1;
+                display: inline-block;
+                background-color: white;
+                
+            }
+            .left{
+                float: left;
+                width: 56%;
+                height: 100%;
+                /*background-color: lightblue;*/
+            }
+
+            .right{
+                float: right;
+                width: 44%;
+                height: 100%;
+                /*background-color: skyblue;*/
+            }
+            
+        </style>
     <title>Log in</title>
   </head>
   <body>
-    <h1>Log in</h1>
+    <div class="firstDiv">
+    <h1 style="font-family: 'Lobster';">Log in</h1>
+  </div>
     <form action="/login" method="POST">
+      <div style="margin: 25px;">
       <label for="name">Email:</label>
       <input type="text" id="email" name="email"><br><br>
       <label for="name">Password:</label>
       <input type="text" id="password" name="password"><br><br>
-      <input type="submit" value="Login">
+      <div class="secoundDiv" >
+      <input type="submit" value="Login" style="padding: 6px 20px; font-size: 20px; background-color: transparent; border: 0px; ">
+    </div>
+    <a class="secoundDiv" style="padding:3px; margin-left: 30px; background-color: transparent; border: 0px; color: gray; text-decoration: none; font-size: 15px" href="http://localhost:4000/signup">Signup</a>
+      <p><%=locals.message%></p>
+    
+  
+    </div>
     </form>
-    <p><%=locals.message%></p>
-    <a href="http://localhost:4000/signup">Signup</a>
+    
   </body>
 </html>

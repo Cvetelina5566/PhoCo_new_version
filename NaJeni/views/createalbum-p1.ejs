@@ -3,24 +3,52 @@
 <html>
 
 <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
     <title>Create album</title>
     <style>
         #upload-button {
-            background-color: green;
+            background-color: rgb(82, 232, 82);
+            padding: 3px;
+            margin: 4px;
         }
 
         #upload-button.uploaded {
-            background-color: gray;
+            background-color: rgb(186, 186, 186);
         }
+
+        .firstDiv{
+                margin-top: 150px;
+                border-bottom-width: 6px;
+                width: 500px;
+                /* inline-size: 326px ; */
+                border-bottom-style: solid;
+                border-image: linear-gradient(to right,darkorchid,rgb(13, 229, 204)) 1;
+                padding-bottom:10px ;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .secoundDiv{
+                border-width: 6px;
+                border-style: solid;
+                border-image: linear-gradient(to right,darkorchid,rgb(13, 229, 204)) 1;
+                display: inline-block;
+                background-color: white;
+                padding: 4px;
+            }
     </style>
 </head>
 
 <body>
-    <p>1/3</p>
-    <h1>Създаване на албум</h1>
-    <p>Моля, добавете обща снимка (например снимка на класа) и въведете име на албума</p>
+    <p style="font-size: 20px; text-align: center">1/3</p>
+    <div style="text-align: center">
+    <h1 class="firstDiv" style="text-align: center;">Създаване на албум</h1>
+    <br>
+    <p style="margin-top: -20px; font-size: 20px;">Моля, добавете обща снимка (например снимка на класа) и въведете име на албума</p>
+    <br>
     <input type="file" id="image-input" style="display:none;">
     <button id="upload-button">Upload Image</button>
+
     <script>
         document.getElementById('upload-button').addEventListener('click', () => {
             document.getElementById('image-input').click();
@@ -31,8 +59,10 @@
             formData.append('image', file);
         });
     </script>
-    <input type="text" id="name-input">
-    <button id="submit-button">Submit Form</button>
+    <input type="text" id="name-input" style="width: 300px;margin-bottom: 20px; padding: 3px;" placeholder="Name">
+    <br>
+    <button id="submit-button" class="secoundDiv">Submit Form</button>
+</div>
 
     <script>
         document.getElementById('image-input').addEventListener('change', () => {
