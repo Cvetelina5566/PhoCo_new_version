@@ -1,0 +1,63 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+        <style>
+            .firstDiv{
+                border-bottom-width: 4px;
+                inline-size: 126px ;
+                border-bottom-style: solid;
+                border-image: linear-gradient(to right,darkorchid,rgb(13, 229, 204)) 1;
+                /*margin: 15px 32px;*/
+                margin: 12px
+
+            }
+
+            .secoundDiv{
+                border-width: 4px;
+                border-style: solid;
+                border-image: linear-gradient(to right,darkorchid,rgb(13, 229, 204)) 1;
+                display: inline-block;
+                background-color: white;
+                
+            }
+            .left{
+                float: left;
+                width: 56%;
+                height: 100%;
+                /*background-color: lightblue;*/
+            }
+
+            .right{
+                float: right;
+                width: 44%;
+                height: 100%;
+                /*background-color: skyblue;*/
+            }
+            
+        </style>
+    <title>Log in</title>
+  </head>
+  <body>
+    <div class="firstDiv">
+    <h1 style="font-family: 'Lobster';">Log in</h1>
+  </div>
+    <form action="/login" method="POST">
+      <div style="margin: 12px;">
+      <label for="name">Email:</label>
+      <input type="text" id="email" name="email"><br><br>
+      <label for="name">Password:</label>
+      <input type="text" id="password" name="password"><br><br>
+      <div class="secoundDiv" >
+      <input type="submit" value="Login">
+    </div>
+    <a class="secoundDiv" style="padding:3px; margin-left: 30px;" href="http://localhost:4000/signup">Signup</a>
+      <p><%=locals.message%></p>
+    
+  
+    </div>
+    </form>
+    
+  </body>
+</html>

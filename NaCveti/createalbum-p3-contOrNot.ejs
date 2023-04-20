@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <style>
+      
+            .secoundDiv{
+                border-width: 4px;
+                border-style: solid;
+                border-image: linear-gradient(to right,darkorchid,rgb(13, 229, 204)) 1;
+                display: inline-block;
+                background-color: white;
+                
+            }
+    </style>
+<body>
+    <button id="continue-btn" class="secoundDiv" style="margin-top: 200px; margin-left: 300px;">Continue</button>
+    <button id="finish-btn" class="secoundDiv"style="margin-top:200px;margin-left:150px">Finish</button>        
+</body>
+
+<script>
+    const continueBtn = document.getElementById('continue-btn');
+    const finishBtn = document.getElementById('finish-btn');
+    
+    continueBtn.addEventListener('click', () => {
+        window.location.href = '/createalbum-p3';
+    });
+    
+    finishBtn.addEventListener('click', () => {
+        window.location.href = '/main';
+    });</script>
