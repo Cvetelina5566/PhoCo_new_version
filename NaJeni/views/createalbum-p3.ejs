@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create album</title>
+    <style>
+      .upload-button {
+        background-color: green;
+      }
+
+      .upload-button.uploaded {
+        background-color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <p>3/3</p>
+    <h1>Добавяне на хора</h1>
+    <p>Моля, въведете име и добавете 3 снимки за този човек</p>
+    <input type="file" id="image-input-1" name="image-input-1" />
+    <input type="file" id="image-input-2" name="image-input-2" />
+    <input type="file" id="image-input-3" name="image-input-3" />
+    
+    <input type="text" id="subtitle-input" placeholder="Subtitle" />
+
+    <button id="submit-button">Submit Form</button>
+
+    <script>
+      const formData = new FormData();
+
+      function handleImageUpload(inputId) {
+        const input = document.getElementById(inputId);
+
+        input.addEventListener("change", () => {
+          const file = input.files[0];
+
+          formData.delete(inputId);
+          formData.append(inputId, file);
+        });
+      }
+
+      handleImageUpload("image-input-1");
+      handleImageUpload("image-input-2");
+      handleImageUpload("image-input-3");
+
+      document.getElementById("submit-button").addEventListener("click", () => {
+        const subtitle = document.getElementById("subtitle-input").value;
+
+        if (!formData.has("image-input-1") || !formData.has("image-input-2") || !formData.has("image-input-3")) {
+            alert("Please upload all images.");
+            return;
+            }
+
+        if (!subtitle) {
+          alert("Please enter the name")
+          return;
+        }
+
+        formData.append("subtitle", subtitle);
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "/createalbum-p3");
+        xhr.addEventListener("load", (event) => {
+          // Handle the server response here and redirect the user to the next page.
+          if (xhr.status === 200) {
+            window.location.href = "/createalbum-p3-contOrNot";
+          } else {
+            alert("ERROR.");
+          }
+        });
+        xhr.send(formData);
+      });
+    </script>
+  </body>
+</html>

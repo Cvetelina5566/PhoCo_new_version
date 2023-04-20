@@ -1,0 +1,31 @@
+<!-- main.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Main</title>
+  </head>
+  <body>
+    <h1>Здравейте, <%=name%></h1>
+    <p>Готови ли сте да се потопите в света на спомените, мечтите и детството?</p>
+    <a href="createalbum-p1"><button>Create an album</button></a>
+    <button id="log-out-btn">Log out</button>
+    <% Object.entries(accessibleAlbums).forEach(([albumName, albumDetails]) => { %>
+      <div class="album">
+          <h3><%= albumDetails.realName %></h3>
+          <img src="<%= albumDetails.imageUrl %>" alt="<%= albumName %> cover image" width="800px" height="400px">
+          <p><%= albumDetails.description %></p>
+          <a href="/viewalbum?albumName=<%= albumName %>">View Album</a>
+      </div>
+  <% }) %>
+  
+  </body>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io()
+    document.getElementById('log-out-btn').addEventListener('click', () => {
+    socket.emit('log-out')})
+    socket.on('redirect', (url) => {
+      window.location.href = url;
+    });
+  </script>
+  </html>

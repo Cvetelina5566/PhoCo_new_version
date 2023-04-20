@@ -1,0 +1,19 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Log in</title>
+  </head>
+  <body>
+    <h1>Log in</h1>
+    <form action="/login" method="POST">
+      <label for="name">Email:</label>
+      <input type="text" id="email" name="email"><br><br>
+      <label for="name">Password:</label>
+      <input type="text" id="password" name="password"><br><br>
+      <input type="submit" value="Login">
+    </form>
+    <p><%=locals.message%></p>
+    <a href="http://localhost:4000/signup">Signup</a>
+  </body>
+</html>

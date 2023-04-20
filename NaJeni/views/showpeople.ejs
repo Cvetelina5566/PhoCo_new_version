@@ -1,0 +1,22 @@
+<!-- showpeople.ejs -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= albumName %> - People</title>
+  </head>
+  <body>
+  <a href="http://localhost:4000/main"></ahref><button>Go back</button></a>
+    <h2><%= realname %> - People</h1>
+    <% people.forEach((person) => { %>
+      <div>
+        <% person.images.forEach((image) => { %>
+          <img src="<%= image %>" alt="" width = 300px/>
+        <% }) %>
+        <a href="/viewalbum/viewpeople/memo?person=<%=person.name%>&name=<%= albumName %>"><button>View <%= person.name %></button></a>
+
+      </div>
+    <% }) %>
+  </body>
+</html>
+

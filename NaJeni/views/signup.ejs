@@ -1,0 +1,24 @@
+<!-- signup.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create Acc</title>
+  </head>
+  <body>
+    <h1>Create account</h1>
+    <form action="/signup" method="POST">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name"><br><br>
+      <label for="name">Email:</label>
+      <input type="text" id="email" name="email"><br><br>
+      <label for="name">Password:</label>
+      <input type="text" id="password" name="password"><br><br>
+      <label for="name">Confirm Password:</label>
+      <input type="text" id="confpassword" name="confpassword"><br><br>
+      
+      <input type="submit" value="Create">
+    </form>
+    <p><%=locals.message%></p>
+    <a href="http://localhost:4000/login">Login</a>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%=albumName%></title>
+  <style>
+    .images{
+      width: 400px;
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <a href="http://localhost:4000/main"></ahref><button>Go back</button></a>
+  <img src="<%=albumCover%>" width="800px">
+  <h1><%=realname%></h1>
+  <img class="images" src="<%=albumPic1%>" width="300px">
+  <img class="images" src="<%=albumPic2%>" width="300px">
+  <img class="images" src="<%=albumPic3%>" width="300px">
+  <h2><%=albumSubtitle%></h2>
+  <p><%=albumDescription%></p>
+  <a href="/viewalbum/viewpeople?name=<%= albumName %>"><button>Show <%=albumName%></button></a>
+</body>
+<script>
+</script>
+</html>
