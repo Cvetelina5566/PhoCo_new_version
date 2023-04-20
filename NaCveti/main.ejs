@@ -1,0 +1,76 @@
+<!-- main.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Main</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+        <style>
+            .firstDiv{
+                border-bottom-width: 4px;
+                inline-size: 476px ;
+                border-bottom-style: solid;
+                border-image: linear-gradient(to right,darkorchid,rgb(13, 229, 204)) 1;
+                margin: 15px 32px
+
+            }
+
+            .secoundDiv{
+                border-width: 4px;
+                border-style: solid;
+                border-image: linear-gradient(to right,darkorchid,rgb(13, 229, 204)) 1;
+                display: inline-block;
+                background-color: white;
+                
+            }
+
+            .left{
+                float: left;
+                width: 50%;
+                height: 503px;
+                background-color: white;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                /* margin-bottom: 25px; */
+                /* width:310px;
+                height:210px; */
+}
+
+            .right{
+                float: right;
+                width: 50%;
+                height: 100%;
+            }    
+
+        </style>
+  </head>
+  <body>
+    <div class="left">
+      <button id="log-out-btn" class="secoundDiv" style="padding: 1px 15px; margin-top: 15px;margin-right:15px;margin-left: 150px;" >Log out</button>
+      <a href="createalbum-p1"><button class="secoundDiv" style="padding: 1px 15px; margin-bottom: 30px;margin-right:15px;margin-left: 17px;">Create an album</button></a>
+     
+      <h1 class="firstDiv" style="font-family: 'Lobster';  font-size: 40px;">Здравейте, <%=name%></h1>
+      <br>
+      <p style="font-size: 23px; margin: 15px 32px; font-family: philosopher regular;">Готови ли сте да се потопите в света на спомените, мечтите и детството?</p>
+    </div>
+    
+    <% Object.entries(accessibleAlbums).forEach(([albumName, albumDetails]) => { %>
+      <div class="right">
+      <div class="album">
+          <h3 style="font-size: 20px;  margin-left: 20px;"><%= albumDetails.realName %></h3>
+          <img style="height: 240px; width: 430px; margin-left: 30px; margin-top: 10px;" src="<%= albumDetails.imageUrl %>" alt="<%= albumName %> cover image" width="800px" height="400px">
+          <p style="font-family: Lobster;font-size: 20px; text-decoration: underline; margin-left: 20px;"><%= albumDetails.description %></p>
+          <a style="font-size: 20px; margin-left: 20px;"href="/viewalbum?albumName=<%= albumName %>">View Album</a>
+        </div>
+  <% }) %>
+  
+  </body>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io()
+    document.getElementById('log-out-btn').addEventListener('click', () => {
+    socket.emit('log-out')})
+    socket.on('redirect', (url) => {
+      window.location.href = url;
+    });
+  </script>
+  </div>
+  </html>
