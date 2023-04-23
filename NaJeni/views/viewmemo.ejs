@@ -1,102 +1,181 @@
 <!-- addmemo.html -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Add Memo</title>
-    <style>
-        #upload-button {
-            background-color: rgb(82, 232, 82);
-            padding: 3px;
-            margin: 4px;
-            border: 0px;
-        }
 
-        #upload-button.uploaded {
-            background-color: rgb(186, 186, 186);
-        }
-      
-      .comment-inputs {
-        display: none;
-      }
-      .comment-inputs.show {
-  display: block;
-}
-      .comment-submit {
-        display: none;
-      }
+<head>
+  <style>
+    html,
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
 
-      .firstDiv {
+    main {
+      overflow-x: hidden;
+      display: flex;
+    }
 
-border-width: 4px;
-inline-size: 500px;
-border-bottom-style: solid;
-border-image: linear-gradient(to right, darkorchid, rgb(13, 229, 204)) 1;
-margin: 12px;
+    h1 {
+      margin: 0;
+      padding: 0;
+    }
 
-}
+    section {
+      min-width: 40vw;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 4ch;
+    }
 
-            .secoundDiv{
-                border-width: 4px;
-                border-style: solid;
-                border-image: linear-gradient(to right,darkorchid,rgb(13, 229, 204)) 1;
-                display: inline-block;
-                background-color: white;
-                
-            }
-    </style>
-  </head>
-  <body>
-    <a href="http://localhost:4000/main"></ahref><button style="margin-top:20px; margin-bottom: 10px; margin-left: 30px; background-color: transparent; border: 0px; color: gray; text-decoration: none; font-size: 15px;">Go back</button></a>
+    section:nth-child(even) {
+      background-color: teal;
+      color: white;
+    }
 
-    <h1 class="firstDiv" style="text-align: center;">Memories of <%=person%></h1>
-    
-    <% if (Object.keys(memoriesArr).length > 0) { %>
-      <% Object.keys(memoriesArr).forEach((key) => { %>
-        <h2><%= key %></h2>
-        <img src="<%= memoriesArr[key] %>" alt="Image" width="300px" height="250px">
-        <h3>Comments</h3>
-  
-        <% const commentsArrForMemory = commentsArr[key] || {} %>
-        <% if (Object.keys(commentsArrForMemory).length > 0) { %>
-          <% Object.keys(commentsArrForMemory).forEach((comkey) => { %>
-            <h2><%= comkey %></h2>
-          <% }) %>
-        <% } else { %>
-          <p>No comments found.</p>
-        <% } %>
-        <button class="comment-button">Comment</button>
-        <div class="comment-inputs">
-          <input placeholder="Name" type="text" class="com-name-input" data-memory="<%= key %>">
-          <input placeholder="Comment" type="text" class="com-text-input" data-memory="<%= key %>">
-          <button class="comsubmit-button" data-memory="<%= key %>">Send</button>
+    #upload-button {
+      background-color: rgb(82, 232, 82);
+      padding: 3px;
+      margin: 4px;
+      border: 0px;
+    }
+
+    #upload-button.uploaded {
+      background-color: rgb(186, 186, 186);
+    }
+
+    .comment-inputs {
+      display: none;
+    }
+
+    .comment-inputs.show {
+      display: block;
+    }
+
+    .comment-submit {
+      display: none;
+    }
+
+    .firstDiv {
+      border-width: 6px;
+      inline-size: 40%;
+      border-bottom-style: solid;
+      border-image: linear-gradient(to right, darkorchid, rgb(13, 229, 204)) 1;
+      width: 100%;
+      text-align: center; 
+      width: 30%;
+      display: block;
+     margin: auto;
+     margin-top: 100px;
+      margin-bottom: 50px;
+    }
+
+    .secoundDiv {
+      border-width: 4px;
+      border-style: solid;
+      border-image: linear-gradient(to right, darkorchid, rgb(13, 229, 204)) 1;
+      display: inline-block;
+      background-color: white;
+
+    }
+
+    .regularbutton {
+      margin-top: 10px;
+      border-width: 8px;
+      border-style: solid;
+      border-image: linear-gradient(-20deg, darkorchid, rgb(8, 186, 205)) 1;
+      display: inline-block;
+      background-color: transparent;
+      padding: 0px 20px;
+      font-size: 15px;
+      width: 150px;
+      height: 40px;
+      margin-bottom: 100px;
+    }
+
+    .memory{
+      margin-right: 50px;
+    }
+    main{
+      margin-bottom: 50px;
+      margin-left: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <a href="http://localhost:4000/main"></ahref><button
+    style="margin-top:-50px; margin-bottom: 10px; margin-left: 30px; background-color: transparent; border: 0px; color: gray; text-decoration: none; font-size: 15px; position: absolute">Go back</button></a>
+
+<h1 class="firstDiv">Memories of <%=person%></h1>
+  <main>
+    <% if (Object.keys(memoriesArr).length> 0) { %>
+      <% Object.keys(memoriesArr).forEach((key)=> { %>
+        <div class="memory">
+          <h2>
+            <%= key %>
+          </h2>
+          <img src="<%= memoriesArr[key] %>" alt="Image" width="300px" height="250px">
+          <h3>Comments</h3>
+          <% const commentsArrForMemory=commentsArr[key] || {} %>
+            <% if (Object.keys(commentsArrForMemory).length> 0) { %>
+              <% Object.keys(commentsArrForMemory).forEach((comkey)=> { %>
+                <h4>
+                  <%= comkey %>
+                </h4>
+                <% }) %>
+                  <% } else { %>
+                    <p>No comments found.</p>
+                    <% } %>
+                      <button class="comment-button">Comment</button>
+                      <div class="comment-inputs">
+                        <input placeholder="Name" type="text" class="com-name-input" data-memory="<%= key %>">
+                        <input placeholder="Comment" type="text" class="com-text-input" data-memory="<%= key %>">
+                        <button class="comsubmit-button" data-memory="<%= key %>">Send</button>
+                      </div>
         </div>
-      <% }) %>
-    <% } else { %>
-      <p style="text-align: center;">No memories found.</p>
-    <% } %>
-  
-    <div style="text-align: center;">
-    <h2>Add Memo</h2>
+        <% }) %>
+          <% } else { %>
+            <p style="text-align: center;">No memories found.</p>
+            <% } %>
+  </main>
+  <div style="text-align: center; margin: auto; display: flex; align-items: center; flex-direction: column; width: 100%; ">
+    <h2 style="margin-bottom: 0px;">Add Memo</h2>
     <p>Enter a memo and upload an image</p>
-    <input type="file" id="image-input" style="display:none;">
+    <div style="margin-left: -310px; margin-bottom: 20px;">
+      <input type="file" id="image-input" style="display:none;">
+      <button id="upload-button" class="secoundDiv" style="margin-left: 282px;">Upload Image</button>  
+      <input type="text" id="text-input" style="width:300px"><br>
+    </div>
+    <button id="submit-button" class="regularbutton">Add Memo</button>  
   </div>
-    <button id="upload-button" class="secoundDiv" style="margin-left: 282px;">Upload Image</button>
   
-    <script>
-     
+
+  <script>
+    const scrollContainer = document.querySelector("main");
+
+    scrollContainer.addEventListener("wheel", (evt) => {
+      evt.preventDefault();
+      scrollContainer.scrollLeft += evt.deltaY;
+    });
+
+  </script>
+  <script>
+
     document.querySelectorAll('.comment-button').forEach(button => {
       button.addEventListener('click', () => {
         const inputsDiv = button.nextElementSibling;
         inputsDiv.classList.toggle('show');
       });
     });
-  
+
     document.querySelectorAll('.comsubmit-button').forEach(button => {
       button.addEventListener('click', () => {
         const memoryKey = button.dataset.memory;
         const nameInput = document.querySelector(`.com-name-input[data-memory="${memoryKey}"]`);
         const textInput = document.querySelector(`.com-text-input[data-memory="${memoryKey}"]`);
-        if(nameInput && textInput) {
+        if (nameInput && textInput) {
           const commentForm = new FormData();
           commentForm.append('name', nameInput.value);
           commentForm.append('text', textInput.value);
@@ -114,55 +193,51 @@ margin: 12px;
         } else {
           alert('Error: nameInput or textInput is not defined');
         }
-      });  
+      });
     });
 
 
-      document.getElementById('upload-button').addEventListener('click', () => {
-        document.getElementById('image-input').click();
-      });
-      document.getElementById('image-input').addEventListener('change', () => {
-        const file = document.getElementById('image-input').files[0];
-        const formData = new FormData();
-        formData.append('image', file);
-        document.getElementById('upload-button').classList.add('uploaded');
-      });
-    </script>
-
-<input type="text" id="text-input" style="width:300px"><br>
-<button id="submit-button" class="secoundDiv">Add Memo</button>
-
-<script>
-  document.getElementById('submit-button').addEventListener('click', () => {
-    const text = document.getElementById('text-input').value
-    if (!text) {
-      alert('Please enter some text.')
-      return;
-    }
-    const file = document.getElementById('image-input').files[0]
-    if (!file) {
-      alert('Please upload an image.')
-      return;
-    }
-    const formData = new FormData()
-    formData.append('text', text)
-    formData.append('memoimage', file)
-    formData.append('person', '<%=person%>')
-    formData.append('albname', '<%=albumname%>')
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', '/addmemopost');
-    xhr.addEventListener('load', (event) => {
-      // Handle the server response here.
-      if (xhr.status === 200) {
-        alert('Memo added successfully.')
-        window.location.href = '/viewalbum/viewpeople/memo?person=<%=person%>&name=<%=albumname%>'
-      } else {
-        alert('Error adding memo.')
+    document.getElementById('upload-button').addEventListener('click', () => {
+      document.getElementById('image-input').click();
+    });
+    document.getElementById('image-input').addEventListener('change', () => {
+      const file = document.getElementById('image-input').files[0];
+      const formData = new FormData();
+      formData.append('image', file);
+      document.getElementById('upload-button').classList.add('uploaded');
+    });
+  </script>
+  <script>
+    document.getElementById('submit-button').addEventListener('click', () => {
+      const text = document.getElementById('text-input').value
+      if (!text) {
+        alert('Please enter some text.')
+        return;
       }
+      const file = document.getElementById('image-input').files[0]
+      if (!file) {
+        alert('Please upload an image.')
+        return;
+      }
+      const formData = new FormData()
+      formData.append('text', text)
+      formData.append('memoimage', file)
+      formData.append('person', '<%=person%>')
+      formData.append('albname', '<%=albumname%>')
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', '/addmemopost');
+      xhr.addEventListener('load', (event) => {
+        // Handle the server response here.
+        if (xhr.status === 200) {
+          alert('Memo added successfully.')
+          window.location.href = '/viewalbum/viewpeople/memo?person=<%=person%>&name=<%=albumname%>'
+        } else {
+          alert('Error adding memo.')
+        }
+      })
+      xhr.send(formData)
     })
-    xhr.send(formData)
-  })
-</script>
-
+  </script>
 </body>
+
 </html>

@@ -6,85 +6,103 @@
   <title>Main</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
   <style>
-    .body {
-      margin: 0px;
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      position: relative;
+      font-family: 'philosopher regular';
+      height: 100%;
+      width: 100%;
+      display: flex;
     }
 
-    .firstDiv {
-      padding-top: 70px;
-      padding-bottom: 20px;
-      border-bottom-width: 4px;
-      inline-size: 40%;
+    .textunderline {
+      border-bottom-width: 6px;
+      inline-size: 60%;
       border-bottom-style: solid;
-      border-image: linear-gradient(to right, darkorchid, rgb(13, 229, 204)) 1;
-      margin: 15px 32px
+      border-image: linear-gradient(to right, darkorchid, rgb(13, 207, 229)) 1;
+      font-family: 'Lobster';
+      font-size: 50px;
+      padding-bottom: 30px;
+      margin-bottom: 100px;
+      margin-top: 200px;
     }
 
-    .secoundDiv {
-      border-width: 4px;
-      border-style: solid;
-      border-image: linear-gradient(to right, darkorchid, rgb(13, 229, 204)) 1;
-      display: inline-block;
-      background-color: white;
-
-    }
 
     .left {
-      float: left;
+      padding-top: 80px;
+      padding-left: 50px;
+      padding-right: 50px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
       width: 40%;
-      margin: 0;
-      height: 100vh;
-      background-color: white;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      /* margin-bottom: 25px; */
-      /* width:310px;
-                height:210px; */
+      background-color: rgb(255, 255, 255);
+      box-shadow: 5px 5px 50px #2a2a2a34;
+      z-index: 50;
     }
 
     .right {
       float: right;
-      width: 56%;
+      width: 50%;
       height: 100%;
+      margin-left: 50%;
+    }
+
+    .regularbuttonsmall {
+      margin-top: 70px;
+      border-width: 6px;
+      border-style: solid;
+      border-image: linear-gradient(-20deg, darkorchid, rgb(8, 186, 205)) 1;
+      display: inline-block;
+      background-color: transparent;
+      padding: 0px 20px;
+      font-size: 10px;
+      height: 45px;
+      font-size: 15px;
+      margin-right: 40px;
+    }
+
+    .buttons {
+      position: absolute;
+      top: 0;
+      right: 0;
     }
 
     .album {
-      margin-bottom: 60px;
+      margin-top:70px;
     }
   </style>
 </head>
 
 <body>
   <div class="left">
-    <button id="log-out-btn" class="secoundDiv"
-      style="padding: 1px 15px; margin-top: 15px;margin-right:15px;margin-left: 150px;">Log out</button>
-    <a href="createalbum-p1"><button class="secoundDiv"
-        style="padding: 1px 15px; margin-bottom: 30px;margin-right:15px;margin-left: 17px;">Create an album</button></a>
-
-    <h1 class="firstDiv" style="font-family: 'Lobster';  font-size: 40px;">Здравейте, <%=name%>
+    <div class="buttons">
+      <button id="log-out-btn" class="regularbuttonsmall">Log out</button>
+      <a href="createalbum-p1"><button class="regularbuttonsmall">Create an album</button></a>
+    </div>
+    <h1 class="textunderline">Здравейте, <%=name%>
     </h1>
-    <br>
-    <p style="font-size: 23px; margin: 15px 32px; font-family: philosopher regular;">Готови ли сте да се потопите в
-      света на спомените, мечтите и детството?</p>
+    <p style="font-size: 30px;">Готови ли сте да се потопите в света на спомените, мечтите и детството?</p>
   </div>
 
   <div class="right">
-    <% if (Object.keys(accessibleAlbums).length > 0) { %>
-    <% Object.entries(accessibleAlbums).forEach(([albumName, albumDetails])=> { %>
-      <div class="album">
-        <h3 style="font-size: 30px;  margin-left: 20px;">
-          <%= albumDetails.realName %>
-        </h3>
-        <img style="height: 400px; width: 700px; margin-left: 20px; margin-bottom: 15px;"
-          src="<%= albumDetails.imageUrl %>" alt="<%= albumName %> cover image" width="800px" height="400px">
-          <br>
-        <a href="/viewalbum?albumName=<%= albumName %>" style="font-family: Lobster;font-size: 25px; text-decoration: underline; margin-left: 20px; color:black">
-          <%= albumDetails.description %>
-        </a>
-      </div>
-      <% }) %>
-      <%}%>
+    <% if (Object.keys(accessibleAlbums).length> 0) { %>
+      <% Object.entries(accessibleAlbums).forEach(([albumName, albumDetails])=> { %>
+        <div class="album">
+          <a href="/viewalbum?albumName=<%= albumName %>" style="text-decoration-color: black">
+          <div style="margin-bottom: 25px; height: 400px; width: 90%; overflow: hidden;">
+          <img style="width: 100%; height: 100%; object-fit: cover;" src="<%= albumDetails.imageUrl %>" alt="<%= albumName %> cover image"></div>
+          <p style="font-family: 'Lobster'; font-size: 35px; color: black; text-decoration: none; margin-bottom: -10px;"> <%= albumDetails.realName %></p></a>
+          <p style="font-size: 22px; color: black; text-decoration: none;"> <%= albumDetails.description %></p>
+        </div>
+        <% }) %>
+          <%}%>
+          <br><div style="height:70px"></div>
   </div>
-
+  
 </body>
 <script src="/socket.io/socket.io.js"></script>
 <script>
@@ -96,6 +114,4 @@
     window.location.href = url;
   });
 </script>
-</div>
-
 </html>

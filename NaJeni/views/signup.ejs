@@ -1,67 +1,126 @@
-<!-- signup.html -->
+<!-- login.html -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
-        <style>
-            .firstDiv{
-                border-bottom-width: 6px;
-                inline-size: 226px ;
-                border-bottom-style: solid;
-                border-image: linear-gradient(to right,darkorchid,rgb(13, 229, 204)) 1;
-                /*margin: 15px 32px;*/
-                margin: 12px
 
-            }
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+  <style>
+    body,
+    html,
+    .sidebyside {
+      margin: 0;
+      padding: 0;
+      position: relative;
+      font-family: 'philosopher regular';
+      height: 100%;
+      width: 100%;
+      overflow-y: hidden;
+      display: flex;
+    }
 
-            .secoundDiv{
-                border-width: 6px;
-                border-style: solid;
-                border-image: linear-gradient(to right,darkorchid,rgb(13, 229, 204)) 1;
-                display: inline-block;
-                background-color: white;
-                padding: 6px 20px; font-size: 20px; background-color: transparent;                 
-            }
-            .left{
-                float: left;
-                width: 56%;
-                height: 100%;
-                /*background-color: lightblue;*/
-            }
+    .textunderline {
+      border-bottom-width: 6px;
+      inline-size: 70%;
+      border-bottom-style: solid;
+      border-image: linear-gradient(to right, darkorchid, rgb(13, 207, 229)) 1;
+      font-family: 'Lobster';
+      font-size: 50px;
+      padding-bottom: 30px;
+      margin-bottom: 60px;
+    }
 
-            .right{
-                float: right;
-                width: 44%;
-                height: 100%;
-                /*background-color: skyblue;*/
-            }
-            
-        </style>
-    <title>Create Acc</title>
-  </head>
-  <body>
-    <div class="firstDiv">
-    <h1>Create account</h1>
-  </div>
-  <br>
-  <div style="margin: 12px;">
-    <form action="/signup" method="POST">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name"><br><br>
-      <label for="name">Email:</label>
-      <input type="text" id="email" name="email"><br><br>
-      <label for="name">Password:</label>
-      <input type="text" id="password" name="password"><br><br>
-      <label for="name">Confirm Password:</label>
-      <input type="text" id="confpassword" name="confpassword"><br><br>
-      <br>
-      
-      <input class="secoundDiv" type="submit" value="Create">
-      <a class="secoundDiv" style="padding:3px; margin-left: 30px; background-color: transparent; border: 0px; color: gray; text-decoration: none; font-size: 15px;" href="http://localhost:4000/login">Login</a>
-      <p><%=locals.message%></p>
-    
+    .regulartext {
+      font-size: 33px;
+    }
+
+    .regularbutton {
+      margin-top: 70px;
+      border-width: 6px;
+      border-style: solid;
+      border-image: linear-gradient(-20deg, darkorchid, rgb(8, 186, 205)) 1;
+      display: inline-block;
+      background-color: transparent;
+      padding: 0px 20px;
+      font-size: 10px;
+      width: 120px;
+      height: 50px;
+      font-size: 20px;
+    }
+
+    .left {
+      padding-top: 100px;
+      padding-left: 50px;
+      padding-right: 50px;
+      float: left;
+      text-align: left;
+      width: 60%;
+      position: sticky;
+      background-color: rgb(255, 255, 255);
+      box-shadow: 5px 5px 50px #2a2a2a34;
+      z-index: 50;
+    }
+
+    .right {
+      min-width: 40%;
+      object-fit: cover;
+    }
+
+    label {
+      font-size: 22px;
+      color: rgb(51, 51, 51);
+    }
+
+    input {
+      margin-top: 10px;
+      margin-bottom: 25px;
+      width: 50%;
+      height: 20px;
+      border: none;
+      border-bottom: 2px solid rgb(180, 180, 180);
+    }
+
+    input:focus {
+      outline: none;
+      border-bottom: 2px solid rgb(72, 72, 72);
+
+    }
+
+    .note {
+      padding: 3px;
+      margin-left: 30px;
+      background-color: transparent;
+      border: 0px;
+      color: gray;
+      text-decoration: none;
+      font-size: 15px
+    }
+  </style>
+  <title>Log in</title>
+</head>
+
+<body>
+  <div class="sidebyside">
+    <div class="left">
+      <h1 class="textunderline">Create account</h1>
+      <form action="/signup" method="POST">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="name">Email:</label><br>
+        <input type="text" id="email" name="email"><br>
+        <label for="name">Password:</label><br>
+        <input type="text" id="password" name="password"><br>
+        <label for="name">Confirm Password:</label><br>
+        <input type="text" id="confpassword" name="confpassword"><br>
+        <input class="regularbutton" type="submit" value="Create">
+        <a class="note" href="http://localhost:4000/login">Login</a>
+      </form>
+        <p>
+          <%=locals.message%>
+        </p>
     </div>
-    </form>
-    
-  </body>
+  <img class="right"
+    src="https://firebasestorage.googleapis.com/v0/b/phoco-c6bcd.appspot.com/o/_startimg.jpg?alt=media&token=a4ac476e-c5b5-48a1-b7e9-918a187904f6"
+    alt="Starter image">
+  </div>
+</body>
 </html>

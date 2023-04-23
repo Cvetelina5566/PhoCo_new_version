@@ -1,69 +1,79 @@
 <!-- welcome.html -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
-        <style>
-            .firstDiv{
-                border-bottom-width: 6px;
-                inline-size: 276px ;
-                border-bottom-style: solid;
-                border-image: linear-gradient(to right,darkorchid,rgb(13, 229, 204)) 1;
-                background-color: transparent;
-                /*margin: 15px 32px;*/
-                margin: 15px 32px;
-                margin-left: auto;
-                margin-right: auto;
-            }
 
-            .secoundDiv{
-                border-width: 6px;
-                border-style: solid;
-                border-image: linear-gradient(to right,darkorchid,rgb(13, 229, 204)) 1;
-                display: inline-block;
-                background-color: white;
-                background-color: transparent;              
-            }
-            .left{
-                float:center;
-                text-align: center;
-                width: 100%;
-                height: 100%;
-                /*background-color: lightblue;*/
-            }
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <title>Welcome to PhoCo</title>
+    <style>
+        body,
+        html,
+        .sidebyside {
+            margin: 0;
+            padding: 0;
+            position: relative;
+            font-family: 'philosopher regular';
+            height: 100%;
+            overflow-y: hidden;
+            display: flex;
+        }
+        .textunderline {
+            border-bottom-width: 6px;
+            inline-size: 50%;
+            border-bottom-style: solid;
+            border-image: linear-gradient(to right, darkorchid, rgb(13, 207, 229)) 1;
+            font-family: 'Lobster';
+            font-size: 70px;
+            padding-bottom: 30px;
+            margin-bottom: 60px;
+        }
+        .regulartext {
+            font-size: 33px;
+        }
+        .regularbuttonsbig {
+            border-width: 8px;
+            border-style: solid;
+            border-image: linear-gradient(-20deg, darkorchid, rgb(8, 186, 205)) 1;
+            display: inline-block;
+            background-color: transparent;
+            padding: 10px 45px;
+            font-size: 30px;
+        }
+        .left {
+            padding-top: 150px;
+            padding-left: 50px;
+            padding-right: 50px;
+            float: left;
+            text-align: left;
+            width: 65%;
+            height: 85%;
+            position: sticky;
+            background-color: rgb(255, 255, 255);
+            box-shadow: 5px 5px 50px #2a2a2a34;
+            z-index: 50;
+        }
+        .right {
+            min-width: 40%;
+            object-fit: cover;
+        }
+    </style>
+</head>
 
-            .right{
-                float: right;
-                width: 44%;
-                height: 100%;
-                /*background-color: skyblue;*/
-            }
-            
-        </style>
-    <title>Welcome</title>
-  </head>
-  <body>
-    <!-- <h1>Welcome. Choose an option</h1> -->
-
-      <div class="left">
-      <br><br><br>
-      <div class="firstDiv">
-      <p style="font-family: 'Lobster';  font-size: 70px;">Здравейте!</p>
-  </div>
-
-  <br>
-  <p style="font-size: 30px; margin: 15px 32px; font-family: philosopher regular;">Готови ли сте да се потопите в света на спомените, мечтите и детството?</p>
- <br><br>
-  <div class="secoundDiv"style="margin: 15px 32px; ">
-  <!-- <button style="padding: 15px 70px;">Log In</button> -->
-  <a href="login"><button style="padding: 15px 70px; font-size: 20px; background-color: transparent; border: 0px; ">Log in</button></a>
-  </div> 
-  <div class="secoundDiv"style="margin:15px 32px">
-      <!-- <button style="padding:15px 70px ;" >Sign Up</button> -->
-      <a href="signup"><button style="padding: 15px 70px; font-size: 20px; background-color: transparent; border: 0px;">Sign up</button></a>
-  </div>
-</div>
-    
-    
+<body>
+    <div class="sidebyside">
+        <div class="left">
+            <p class="textunderline">Здравейте!</p>
+            <p class="regulartext">Готови ли сте да се потопите в света на спомените, мечтите и детството?</p>
+            <div style="margin-top: 150px;">
+                <a href="login"><button class="regularbuttonsbig" style="margin-right: 40px;">Log in</button></a>
+                <a href="signup"><button class="regularbuttonsbig">Sign up</button></a>
+            </div>
+        </div>
+        <img class="right"
+            src="https://firebasestorage.googleapis.com/v0/b/phoco-c6bcd.appspot.com/o/_startimg.jpg?alt=media&token=a4ac476e-c5b5-48a1-b7e9-918a187904f6"
+            alt="Starter image">
+    </div>
 </body>
+
 </html>

@@ -4,54 +4,95 @@
 <html>
 
 <head>
-  <title>
-    <%= albumName %> - People
-  </title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
   <style>
-    
-    .secoundDiv {
-
-      border-width: 4px;
-      inline-size: 130px;
-      border-bottom-style: solid;
-      border-top-style: solid;
-      border-image: linear-gradient(to right, darkorchid, rgb(13, 229, 204)) 1;
-      margin: 12px;
-
+    html,
+    body {
+      margin: 0;
+      font-family: sans-serif;
     }
 
-    .firstDiv {
-      border-bottom-width: 4px;
-      inline-size: 400px;
-
-      border-bottom-style: solid;
-      border-image: linear-gradient(to right, darkorchid, rgb(13, 229, 204)) 1;
-      margin: 15px 32px;
-      margin-left: auto;
-      margin-right: auto;
-      padding-bottom: 10px;
-      margin-bottom: 30px;
+    main {
+      overflow-x: hidden;
+      display: flex;
     }
+
+    h1 {
+      margin: 0;
+      padding: 0;
+    }
+
+    section {
+      min-width: 30%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 4ch;
+    }
+
+    section:nth-child(even) {
+      background-color: rgb(255, 255, 255);
+      color: white;
+    }
+
+    .regularbutton {
+      margin-top: 50px;
+      border-width: 8px;
+      border-style: solid;
+      border-image: linear-gradient(-20deg, darkorchid, rgb(8, 186, 205)) 1;
+      display: inline-block;
+      background-color: transparent;
+      padding: 0px 20px;
+      font-size: 10px;
+      width: 100%;
+      height: 50px;
+      font-size: 20px;
+    }
+
   </style>
 </head>
 
 <body>
-  <a href="http://localhost:4000/main"></ahref><button style="margin-top:20px; margin-bottom: 10px; margin-left: 30px; background-color: transparent; border: 0px; color: gray; text-decoration: none; font-size: 15px;">Go back</button></a>
-  <h2 class="firstDiv" style="text-align: center;">
-    <%= realname %> - People</h1>
-      <% people.forEach((person)=> { %>
-        <div style="">
-          <% person.images.forEach((image)=> { %>
-            <img style="height: 205px; margin-left: 20px; margin-top: 20px;" src="<%= image %>" alt="" width=300px />
-            <% }) %>
-              <br>
-              <a href="/viewalbum/viewpeople/memo?person=<%=person.name%>&name=<%= albumName %>"><button
-                  style="margin-left: 22px; font-family: 'Lobster';" class="secoundDiv">View <%= person.name %>
-                    </button></a>
-
+  <main>
+    <a href="http://localhost:4000/main"></ahref><button
+        style="margin-top:20px; margin-bottom: 10px; margin-left: 20px; background-color: transparent; border: 0px; color: gray; text-decoration: none; font-size: 15px; position: absolute;">Go
+        back</button></a>
+    <% people.forEach((person)=> { %>
+      <section style="display:flex; flex-direction:column;">
+        <div
+          style="display: flex; justify-content: center; margin-bottom: -20px; height: 50%; width: 80%; overflow: hidden;">
+          <img style="width: 100%; height: 100%; object-fit: cover;" src="<%= person.images[0] %>"
+            alt="<%= albumName %> cover image">
         </div>
-        <% }) %>
+        <div style="display: flex; justify-content: center; width: 80%; ">
+          <div
+            style="display: flex; margin-top: 40px; justify-content: center; margin-right: 5%; width: auto; overflow: hidden;">
+            <img style="width: 100%; height: 100%; object-fit: cover;" src="<%= person.images[1] %>"
+              alt="<%= albumName %> cover image">
+          </div>
+          <div style="display: flex; margin-top: 40px; justify-content: center; width: auto; overflow: hidden;">
+            <img style="width: 100%; height: 100%; object-fit: cover;" src="<%= person.images[2] %>"
+              alt="<%= albumName %> cover image">
+          </div>
+        </div>
+
+        <a href="/viewalbum/viewpeople/memo?person=<%=person.name%>&name=<%= albumName %>"><button class="regularbutton">View <%= person.name %>
+          </button></a>
+
+      </section>
+      <% }) %>
+  </main>
 </body>
+
+
+
+<script>
+  const scrollContainer = document.querySelector("main");
+
+  scrollContainer.addEventListener("wheel", (evt) => {
+    evt.preventDefault();
+    scrollContainer.scrollLeft += evt.deltaY;
+  });
+</script>
 
 </html>
